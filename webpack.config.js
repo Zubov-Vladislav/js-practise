@@ -16,7 +16,7 @@ const jsLoaders = () => {
     },
   }];
   if (isDev) {
-    loaders.push('eslint-laoder');
+    loaders.push('eslint-loader');
   }
   return loaders;
 };
@@ -38,6 +38,7 @@ module.exports = {
     },
   },
   devServer: {
+    open: true,
     port: 3000,
     hot: isDev,
   },
@@ -68,7 +69,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
